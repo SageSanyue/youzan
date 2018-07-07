@@ -46,5 +46,10 @@ new Vue({
     },
     components: {
         Foot
+    },
+    filters: {
+        number(price){
+            return price + '.00'
+        }
     }
 })

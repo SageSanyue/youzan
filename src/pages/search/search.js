@@ -8,6 +8,8 @@ import qs from 'qs'
 
 let {keyword, id} = qs.parse(location.search.substr(1))
 
+import mixin from 'js/mixin.js'
+
 new Vue({
     el: '.container',
     data: {
@@ -23,5 +25,6 @@ new Vue({
                 this.searchList = res.data.lists
             })
         }
-    }
+    },
+    mixins: [mixin]
 })

@@ -26,7 +26,10 @@ new Vue({
         bannerLists: null,
         skuType: 1,
         showSku: false,
-        skuNum: 1
+        skuNum: 1,
+        isAddCart: false,
+        showAddMessage: false,
+        id
     },
     created(){
         this.getDetails()
@@ -62,6 +65,22 @@ new Vue({
         changeSkuNum(num){
             if(num < 0 && this.skuNum === 1)return
             this.skuNum += num
+        },
+        addCart(){
+            axios.post(url.addCart,{
+                id,
+                number: this.skuNum
+            }).then(res => {
+                if(res.data.status === 200){
+                    this.showSku = false
+                    this.isAddCart = true
+                    this.showAddMessage = true
+
+                    setTimeout(() => {
+                        this.showAddMessage = false
+                    },1000)
+                }
+            })
         }
     },
     components: {

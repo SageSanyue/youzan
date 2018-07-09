@@ -4,8 +4,9 @@ let url = {
     topList: '/category/topList',
     subList: '/category/subList',
     rank: '/category/rank',
-    searchList: '/search/list'
-    details: 'goods/details'
+    searchList: '/search/list',
+    details: '/goods/details',
+    deal: '/goods/deal'
 }
  
 //开发环境（用的ip接口与后端协商后单独开发）和真实环境(映射到相应后台)的切换

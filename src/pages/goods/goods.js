@@ -25,7 +25,8 @@ new Vue({
         dealLists: null,
         bannerLists: null,
         skuType: 1,
-        showSku: false
+        showSku: false,
+        skuNum: 1
     },
     created(){
         this.getDetails()
@@ -57,6 +58,10 @@ new Vue({
         chooseSku(type){
             this.skuType = type
             this.showSku = true
+        },
+        changeSkuNum(num){
+            if(num < 0 && this.skuNum === 1)return
+            this.skuNum += num
         }
     },
     components: {

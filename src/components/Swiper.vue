@@ -41,7 +41,10 @@
             //console.log('mounted:',document.querySelectorAll('.swiper-slide'))
             new Swiper('.swiper-container',{
                 loop: true,
-                pagination: {el:'.swiper-pagination'}
+                pagination: {el:'.swiper-pagination'},
+                autoplay: {
+                    delay: 2000,
+                }
             })
         },
         /*watch: {

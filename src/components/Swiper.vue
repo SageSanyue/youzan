@@ -8,7 +8,6 @@
           </div>
         </div>
         <div class="swiper-pagination"></div>
-
     </div>
 </template>
 
@@ -42,7 +41,7 @@
             //console.log('mounted:',document.querySelectorAll('.swiper-slide'))
             new Swiper('.swiper-container',{
                 loop: true,
-                pagination: '.swiper-pagination'
+                pagination: {el:'.swiper-pagination'}
             })
         },
         /*watch: {

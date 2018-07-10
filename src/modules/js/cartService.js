@@ -8,6 +8,12 @@ class Cart{
             number: 1
         })
     }
+    static reduce(id){
+        return fetch(url.cartReduce,{
+            id,
+            number: 1
+        })
+    }
 }
 
 export default Cart

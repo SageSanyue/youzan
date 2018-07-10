@@ -8,6 +8,7 @@ import url from 'js/api.js'
 import mixin from 'js/mixin'
 import Velocity from 'velocity-animate'
 import Cart from 'js/cartService.js'
+import fetch from 'js/fetch.js'
 
 new Vue({
     el: '#container',
@@ -139,11 +140,15 @@ new Vue({
             this.editingShopIndex = shop.editing ? shopIndex : -1
         },
         reduce(good){
-            if(good.number === 1) return
+            /*if(good.number === 1) return
             axios.post(url.cartReduce,{
                 id: good.id,
                 number: 1
             }).then(res => {
+                good.number--
+            })*/
+            Cart.reduce(good.id).then(res => {
+                if(good.number === 1)return
                 good.number--
             })
         },
@@ -170,7 +175,7 @@ new Vue({
         removeConfirm(){
             if(this.removeMsg === '确定要删除该商品吗？'){
                 let {shop,shopIndex,good,goodIndex} = this.removeData
-                axios.post(url.cartRemove,{
+                fetch(url.cartRemove,{
                     id: good.id
                 }).then(res => {
                     shop.goodsList.splice(goodIndex,1)

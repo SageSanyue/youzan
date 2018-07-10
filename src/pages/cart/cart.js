@@ -34,6 +34,14 @@ new Vue({
                 })
             }
         },
+        allRemoveSelected: {
+            get(){
+
+            },
+            set(newVal){
+
+            }
+        },
         selectLists(){
             if(this.lists&&this.lists.length){
                 let arr = []
@@ -50,6 +58,9 @@ new Vue({
                 return arr
             }
             return []
+        },
+        removeLists(){
+
         }
     },
     created(){
@@ -61,11 +72,13 @@ new Vue({
                 let lists = res.data.cartList
                 lists.forEach(shop => {
                     shop.checked = true
+                    shop.removeChecked = false
                     shop.editing = false
                     shop.editingMsg = '编辑' 
                     shop.goodsList.forEach(good => {
                         good.checked = true
-                    })
+                        good.removeChecked = false
+                    }) 
                 })
                 this.lists = lists
             })

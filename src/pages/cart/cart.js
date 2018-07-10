@@ -11,7 +11,9 @@ new Vue({
     el: '#container',
     data: {
         lists: null,
-        total: 0
+        total: 0,
+        editingShop: null,
+        editingShopIndex: -1
     },
     computed: {
         allSelected: {
@@ -96,6 +98,8 @@ new Vue({
                     item.editingMsg = shop.editing ? '' : '编辑'
                 }
             })
+            this.editingShop = shop.editing ? shop : null
+            this.editingShopIndex = shop.editing ? shopIndex : -1
         }
     },
     mixins: [mixin]

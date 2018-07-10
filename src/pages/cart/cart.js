@@ -21,12 +21,13 @@ new Vue({
     methods: {
         getList(){
             axios.post(url.cartLists).then(res => {
-                this.lists = res.data.cartList
-                this.lists.forEach(shop => {
+                let lists = res.data.cartList
+                lists.forEach(shop => {
                     shop.goodsList.forEach(good => {
                         good.checked = true
                     })
                 })
+                this.lists = lists
             })
         },
         selectGood(good){

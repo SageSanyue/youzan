@@ -10,7 +10,8 @@ import mixin from 'js/mixin'
 new Vue({
     el: '#container',
     data: {
-        lists: null
+        lists: null,
+        total: 0
     },
     computed: {
         allSelected: {
@@ -30,6 +31,23 @@ new Vue({
                     })
                 })
             }
+        },
+        selectLists(){
+            if(this.lists&&this.lists.length){
+                let arr = []
+                let total = 0
+                this.lists.forEach(shop => {
+                    shop.goodsList.forEach(good => {
+                        if(good.checked){
+                            arr.push(good)
+                            total += good.price * good.number
+                        }
+                    })
+                })
+                this.total = total
+                return arr
+            }
+            return []
         }
     },
     created(){
@@ -62,7 +80,7 @@ new Vue({
             })
         },
         selectAll(){
-            console.log(this.allSelected)
+            //console.log(this.allSelected)
             this.allSelected = !this.allSelected
         }
     },

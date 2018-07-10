@@ -156,19 +156,51 @@ new Vue({
         remove(shop,shopIndex,good,goodIndex){
             this.removePopup = true
             this.removeData = {shop,shopIndex,good,goodIndex}
+            this.removeMsg = '确定要删除该商品吗？'
+        },
+        removeList(){
+            this.removePopup = true
+            this.removeMsg = `确定将所选${this.removeLists.length}个商品删除?`
         },
         removeConfirm(){
-            let {shop,shopIndex,good,goodIndex} = this.removeData
-            axios.post(url.cartRemove,{
-                id: good.id
-            }).then(res => {
-                shop.goodsList.splice(goodIndex,1)
-                if(!shop.goodsList.length){
-                    this.lists.splice(shopIndex,1)
-                    this.removeShop()
-                }
-                this.removePopup = false
-            })
+            if(this.removeMsg === '确定要删除该商品吗？'){
+                let {shop,shopIndex,good,goodIndex} = this.removeData
+                axios.post(url.cartRemove,{
+                    id: good.id
+                }).then(res => {
+                    shop.goodsList.splice(goodIndex,1)
+                    if(!shop.goodsList.length){
+                        this.lists.splice(shopIndex,1)
+                        this.removeShop()
+                    }
+                    this.removePopup = false
+                })
+            }else{
+                let ids = []
+                this.removeLists.forEach(good => {
+                    ids.push(good.id)
+                })
+                axios.post(url.cartMremove,{
+                    ids
+                }).then(res => {
+                    let arr = []
+                    this.editingShop.goodsList.forEach(good => {
+                        let index = this.removeLists.findIndex(item => {
+                            return item.id == good.id
+                        })
+                        if(index === -1){
+                            arr.push(good)
+                        }
+                    })
+                    if(arr.length){
+                        this.editingShop.goodsList = arr
+                    }else{
+                        this.lists.splice(this.editingShopIndex,1)
+                        this.removeShop()
+                    }
+                    this.removePopup = false
+                })
+            }
         },
         removeShop(){
             this.editingShop = null

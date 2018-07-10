@@ -85,9 +85,10 @@ new Vue({
         },
         selectGood(shop,good){
             //console.log(good.checked)
-            good.checked = !good.checked
-            shop.checked = shop.goodsList.every(good => {
-                return good.checked
+            let attr = this.editingShop ? 'removeChecked' : 'checked'
+            good[attr] = !good[attr]
+            shop[attr] = shop.goodsList.every(good => {
+                return good[attr]
             })
         },
         selectShop(shop){

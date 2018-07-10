@@ -52,6 +52,9 @@ new Vue({
         },
         selectShop(shop){
             shop.checked = !shop.checked
+            shop.goodsList.forEach(good => {
+                good.checked = shop.checked
+            })
         }
     },
     mixins: [mixin]

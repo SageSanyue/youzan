@@ -7,6 +7,7 @@ import axios from 'axios'
 import url from 'js/api.js'
 import mixin from 'js/mixin'
 import Velocity from 'velocity-animate'
+import Cart from 'js/cartService.js'
 
 new Vue({
     el: '#container',
@@ -147,10 +148,13 @@ new Vue({
             })
         },
         add(good){
-            axios.post(url.cartAdd,{
+            /*axios.post(url.cartAdd,{
                 id: good.id,
                 number: 1
             }).then(res => {
+                good.number++
+            })*/
+            Cart.add(good.id).then(res => {
                 good.number++
             })
         },

@@ -13,7 +13,14 @@ new Vue({
         lists: null
     },
     computed: {
+        allSelected: {
+            get(){
+                return true
+            },
+            set(newVal){
 
+            }
+        }
     },
     created(){
         this.getList()

@@ -15,7 +15,12 @@ new Vue({
     computed: {
         allSelected: {
             get(){
-                return true
+                if(this.lists&&this.lists.length){
+                    return this.lists.every(shop => {
+                        return shop.checked
+                    })
+                }
+                return false
             },
             set(newVal){
 
@@ -44,6 +49,9 @@ new Vue({
             shop.checked = shop.goodsList.every(good => {
                 return good.checked
             })
+        },
+        selectShop(shop){
+            shop.checked = !shop.checked
         }
     },
     mixins: [mixin]

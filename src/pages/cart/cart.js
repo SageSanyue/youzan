@@ -36,10 +36,18 @@ new Vue({
         },
         allRemoveSelected: {
             get(){
-
+                if(this.editingShop){
+                    return this.editingShop.removeChecked
+                }
+                return false
             },
             set(newVal){
-
+                if(this.editingShop){
+                    this.editingShop.removeChecked = newVal
+                    this.editingShop.goodsList.forEach(good => {
+                        good.removeChecked = newVal
+                    })
+                }
             }
         },
         selectLists(){
@@ -60,7 +68,16 @@ new Vue({
             return []
         },
         removeLists(){
-
+            if(this.editingShop){
+                let arr = []
+                this.editingShop.goodsList.forEach(good => {
+                    if(good.removeChecked){
+                        arr.push(good)
+                    }
+                })
+                return arr
+            }
+            return []
         }
     },
     created(){
@@ -92,14 +109,16 @@ new Vue({
             })
         },
         selectShop(shop){
-            shop.checked = !shop.checked
+            let attr = this.editingShop ? 'removeChecked' : 'checked'
+            shop[attr] = !shop[attr]
             shop.goodsList.forEach(good => {
-                good.checked = shop.checked
+                good[attr] = shop[attr]
             })
         },
         selectAll(){
             //console.log(this.allSelected)
-            this.allSelected = !this.allSelected
+            let attr = this.editingShop ? 'allRemoveSelected' : 'allSelected'
+            this[attr] = !this[attr]
         },
         edit(shop,shopIndex){
             

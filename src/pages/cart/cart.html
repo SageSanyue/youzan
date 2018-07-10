@@ -44,16 +44,15 @@
                   </a>
                   <a href="javascript:;" data-type="cart" 
                   class="j-edit-list pull-right c-blue font-size-12 edit-list"
+                  @click="edit(shop,shopIndex)"
                   >
-                    <!---->
-                    编辑
+                  {{shop.editingMsg}}
                   </a>
                 </div>
-                <!---->
                 <div>
                   <ul class="js-list block block-list block-list-cart border-0">
                     <li class="block-item block-item-cart"
-                    
+                    :class="{editing:shop.editing}"
                     v-for="(good,goodIndex) in shop.goodsList">
                       <div>
                         <div class="check-container" @click="selectGood(shop,good)">
@@ -75,12 +74,12 @@
                               {{good.sku}}
                             </p>
                             <!-- 显示状态 -->
-                            <div class="num">
+                            <div class="num" v-show="!shop.editing">
                               ×<span class="num-txt">{{good.number}}</span>
                               <!---->
                             </div>
                             <!-- 编辑状态 -->
-                            <div class="num"  style="display: none;">
+                            <div class="num"  v-show="shop.editing">
                               <!---->
                               <div class="quantity">
                                 <button type="button" class="minus disabled"></button>
@@ -153,7 +152,7 @@
                    {{total | currency}}</span>
                   <p class="c-gray-dark">不含运费</p>
                 </div>
-                <button href="javascript:;"  disabled
+                <button href="javascript:;"  :disabled="!selectLists.length"
                 class="js-go-pay btn btn-orange-dark font-size-14">
                   结算 (3)
                 </button>

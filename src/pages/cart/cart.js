@@ -163,6 +163,7 @@ new Vue({
                 id: good.id
             }).then(res => {
                 shop.goodsList.splice(goodIndex,1)
+                this.removePopup = false
             })
         }
     },

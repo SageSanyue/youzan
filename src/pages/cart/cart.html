@@ -36,7 +36,7 @@
               <div class="block block-order block-cart" v-for="(shop,shopIndex) in lists">
                 <div class="header">
                   <div class="select-group js-select-group">
-                    <span class="check"></span>
+                    <span class="check" :class="{checked:shop.checked}"></span>
                   </div> 
                   <a class="shop-title">
                     <i class="custom-store-img">店铺：</i>

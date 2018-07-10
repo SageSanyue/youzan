@@ -23,6 +23,7 @@ new Vue({
             axios.post(url.cartLists).then(res => {
                 let lists = res.data.cartList
                 lists.forEach(shop => {
+                    shop.checked = true
                     shop.goodsList.forEach(good => {
                         good.checked = true
                     })
@@ -31,7 +32,7 @@ new Vue({
             })
         },
         selectGood(good){
-            console.log(good.checked)
+            //console.log(good.checked)
             good.checked = !good.checked
         }
     },

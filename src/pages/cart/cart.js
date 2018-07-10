@@ -23,7 +23,12 @@ new Vue({
                 return false
             },
             set(newVal){
-
+                this.lists.forEach(shop => {
+                    shop.checked = newVal
+                    shop.goodsList.forEach(good => {
+                        good.checked = newVal
+                    })
+                })
             }
         }
     },
@@ -55,6 +60,10 @@ new Vue({
             shop.goodsList.forEach(good => {
                 good.checked = shop.checked
             })
+        },
+        selectAll(){
+            console.log(this.allSelected)
+            this.allSelected = !this.allSelected
         }
     },
     mixins: [mixin]

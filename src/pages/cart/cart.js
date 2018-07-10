@@ -14,7 +14,8 @@ new Vue({
         total: 0,
         editingShop: null,
         editingShopIndex: -1,
-        removePopup: false
+        removePopup: false,
+        removeData: null
     },
     computed: {
         allSelected: {
@@ -154,6 +155,15 @@ new Vue({
         },
         remove(shop,shopIndex,good,goodIndex){
             this.removePopup = true
+            this.removeData = {shop,shopIndex,good,goodIndex}
+        },
+        removeConfirm(){
+            let {shop,shopIndex,good,goodIndex} = this.removeData
+            axios.post(url.cartRemove,{
+                id: good.id
+            }).then(res => {
+                shop.goodsList.splice(goodIndex,1)
+            })
         }
     },
     mixins: [mixin]

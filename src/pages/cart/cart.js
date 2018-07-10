@@ -13,7 +13,8 @@ new Vue({
         lists: null,
         total: 0,
         editingShop: null,
-        editingShopIndex: -1
+        editingShopIndex: -1,
+        removePopup: false
     },
     computed: {
         allSelected: {
@@ -150,6 +151,9 @@ new Vue({
             }).then(res => {
                 good.number++
             })
+        },
+        remove(shop,shopIndex,good,goodIndex){
+            this.removePopup = true
         }
     },
     mixins: [mixin]

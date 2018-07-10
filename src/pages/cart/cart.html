@@ -56,7 +56,7 @@
                     
                     v-for="(good,goodIndex) in shop.goodsList">
                       <div>
-                        <div class="check-container" @click="selectGood(good)">
+                        <div class="check-container" @click="selectGood(shop,good)">
                           <span class="check" :class="{checked:good.checked}"></span>
                         </div>
                         <div class="name-card clearfix">

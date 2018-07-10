@@ -31,9 +31,12 @@ new Vue({
                 this.lists = lists
             })
         },
-        selectGood(good){
+        selectGood(shop,good){
             //console.log(good.checked)
             good.checked = !good.checked
+            shop.checked = shop.goodsList.every(good => {
+                return good.checked
+            })
         }
     },
     mixins: [mixin]

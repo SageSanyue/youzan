@@ -4,6 +4,7 @@
   "description": "A Vue.js project",
   "author": "Sanyue2333 <562441461@qq.com>",
   "private": true,
+  "chromium-args":"--allow-running-insecure-content",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",

@@ -16,6 +16,9 @@
         height: 100%;
         width: 100%;
     }
+    .swiper-pagination {
+      text-align: center;
+    }
 </style>
 
 <script>
@@ -41,10 +44,11 @@
             //console.log('mounted:',document.querySelectorAll('.swiper-slide'))
             new Swiper('.swiper-container',{
                 loop: true,
-                pagination: {el:'.swiper-pagination'},
+                pagination: {el:'.swiper-pagination', clickable :true,},
                 autoplay: {
                     delay: 4000,
-                }
+                },
+               
             })
         },
         /*watch: {

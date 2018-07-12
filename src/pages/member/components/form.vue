@@ -22,9 +22,10 @@
               <option value="-1">选择城市</option>
               <option :value="c.value" v-for="c in cityList">{{c.label}}</option>
             </select>
-            <select class="js-county-selector" name="area_code" data-code="" v-model="districtValue">
+            <select class="js-county-selector" name="area_code" data-code="" 
+            v-model="districtValue">
               <option value="-1">选择地区</option>
-              <option :value="d.value" v-for="d in districtValue.list">{{d.label}}</option>
+              <option :value="d.value" v-for="d in districtList">{{d.label}}</option>
             </select>
           </div>
         </div>

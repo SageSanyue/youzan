@@ -1,4 +1,4 @@
-/*import Address from 'js/addressService.js'
+import Address from 'js/addressService.js'
 
 export default {
     data(){
@@ -30,7 +30,7 @@ export default {
             this.name = ad.name
             this.tel = ad.del
             this.address = ad.address
-            this.id = id
+            this.id = ad.id
         }
     },
     methods: {
@@ -93,7 +93,7 @@ export default {
         },
     }
 }
-*/
+/*
 import Address from 'js/addressService.js'
 
 export default {
@@ -178,4 +178,4 @@ export default {
       }
     }
   }
-}
+}*/

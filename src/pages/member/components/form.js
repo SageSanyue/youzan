@@ -20,6 +20,7 @@ export default {
         }
     },
     created(){
+      //组件创建完后获取数据，此时data已经被observed了
         let query = this.$route.query
         this.type = query.type
         this.instance = query.instance

@@ -19,6 +19,11 @@ export default {
       // instance: JSON.parse(sessionStorage.getItem('instance'))
         }
     },
+    computed: {
+      lists(){
+        return this.$store.state.lists
+      }
+    },
     created(){
       //组件创建完后获取数据，此时data已经被observed了
         let query = this.$route.query
@@ -40,31 +45,41 @@ export default {
             let {name,tel,provinceValue,cityValue,districtValue,address} = this
             let data = {name,tel,provinceValue,cityValue,districtValue,address}
             if(this.type === 'add'){
-                Address.add(data).then(res => {
+                /*Address.add(data).then(res => {
                     this.$router.go(-1)
-                })
+                })*/
+                this.$store.dispatch('addAction',data)
             }
             if(this.type === 'edit'){
-                data.id = this.id
+                /*data.id = this.id
                 Address.update(data).then(res => {
                     this.$router.go(-1)
-                })
+                })*/
+                this.$store.dispatch('updateAction',data)
             }
         },
         remove(){
             if(window.confirm('确认删除？')){
-                Address.remove(this.id).then(res => {
+                /*Address.remove(this.id).then(res => {
                     this.$router.go(-1)
-                })
+                })*/
+                this.$store.dispatch('removeAction',this.id)
             }
         },
         setDefault(){
-            Address.setDefault(this.id).then(res => {
+            /*Address.setDefault(this.id).then(res => {
                 this.$router.go(-1)
-            })
+            })*/
+            this.$store.dispatch('setDefaultAction',this.id)
         }
     },
     watch: {
+        lists:{
+          handler(){
+            this.$router.go(-1)
+          },
+          deep: true
+        },
         provinceValue(val){
             if(val === -1) return
             let list = this.addressData.list
